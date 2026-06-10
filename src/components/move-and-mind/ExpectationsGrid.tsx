@@ -1,4 +1,4 @@
-import { Footprints, Mountain, Wind, Flame, Camera, Users2 } from 'lucide-react'
+import { Footprints, Mountain, Gamepad2, Flame, Camera, Users2 } from 'lucide-react'
 import Container from '@/components/layout/Container'
 import SectionLabel from '@/components/shared/SectionLabel'
 import RevealOnScroll from '@/components/shared/RevealOnScroll'
@@ -15,9 +15,9 @@ const features = [
     body: 'Curated day hikes and multi-day treks in the most beautiful parts of India.',
   },
   {
-    icon: Wind,
-    title: 'Yoga & breathwork',
-    body: 'Morning sessions led by certified instructors. The altitude makes every breath intentional.',
+    icon: Gamepad2,
+    title: 'Rave & games',
+    body: 'Music-led energy, playful challenges, and group games that make it easy to loosen up and connect.',
   },
   {
     icon: Flame,

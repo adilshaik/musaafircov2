@@ -18,6 +18,55 @@
   to   { transform: scale(1.12); }
 }
 
+/* Hero scene (HeroScene.tsx) */
+@keyframes wave {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-240px); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+@keyframes run-cross {
+  from { transform: translateX(-140px); }
+  to   { transform: translateX(1580px); }
+}
+@keyframes route-flow {
+  to { stroke-dashoffset: -28; }
+}
+@keyframes sun-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 0.7;  transform: scale(1.06); }
+}
+@keyframes drive-across {
+  from { transform: translateX(-300px); }
+  to   { transform: translateX(1740px); }
+}
+@keyframes wheel-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes palm-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.7; }
+}
+@keyframes drift-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-26px); }
+}
+/* Two-frame run cycle (flipbook) */
+@keyframes runstep-a {
+  0%, 49.9% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes runstep-b {
+  0%, 49.9% { opacity: 0; }
+  50%, 100% { opacity: 1; }
+}
+
 @theme inline {
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-playfair), Georgia, serif;

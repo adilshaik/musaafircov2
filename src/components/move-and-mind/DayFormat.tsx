@@ -1,4 +1,4 @@
-import { Footprints, Wind, Coffee, Binoculars, Camera, Flame } from 'lucide-react'
+import { Footprints, Gamepad2, Coffee, Binoculars, Camera, Flame } from 'lucide-react'
 import Container from '@/components/layout/Container'
 import SectionLabel from '@/components/shared/SectionLabel'
 import RevealOnScroll from '@/components/shared/RevealOnScroll'
@@ -13,9 +13,9 @@ const schedule = [
   },
   {
     time: '07:30',
-    icon: Wind,
-    label: 'Yoga & Breathwork',
-    desc: 'One hour of movement and mindfulness with certified instructors. Altitude makes every breath intentional.',
+    icon: Gamepad2,
+    label: 'Rave & Game',
+    desc: 'Music, playful group games, and easy movement to loosen up after the run. No pressure, just laughs and coastal energy.',
     dark: false,
   },
   {

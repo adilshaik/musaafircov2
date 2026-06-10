@@ -42,14 +42,18 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className={cn(
-              'font-display text-xl font-bold tracking-tight transition-colors',
-              transparent ? 'text-white' : 'text-sand'
-            )}
-          >
-            Musaafir<span className="text-sunset">Co</span>
+          <Link href="/move-and-mind" className="flex flex-col leading-none">
+            <span
+              className={cn(
+                'font-accent text-xl tracking-[0.08em] transition-colors',
+                transparent ? 'text-white' : 'text-sand'
+              )}
+            >
+              MOVE&amp;MIND <span className="text-sunset">×</span> MUSAAFIR
+            </span>
+            <span className="mt-1 text-[0.58rem] uppercase tracking-[0.28em] text-white/40">
+              Safar • Log • Kahaniya
+            </span>
           </Link>
 
           {/* Desktop nav */}

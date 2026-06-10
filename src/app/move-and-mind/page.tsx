@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import type { Metadata } from 'next'
+import InauguralNav from '@/components/move-and-mind/InauguralNav'
 import CollabHero from '@/components/move-and-mind/CollabHero'
 import CollabStory from '@/components/move-and-mind/CollabStory'
 import DayFormat from '@/components/move-and-mind/DayFormat'
-import ExpectationsGrid from '@/components/move-and-mind/ExpectationsGrid'
 import PricingCards from '@/components/move-and-mind/PricingCards'
 import RegistrationModal from '@/components/move-and-mind/RegistrationModal'
 import StatBand from '@/components/shared/StatBand'
@@ -15,10 +14,26 @@ import TestimonialCard from '@/components/shared/TestimonialCard'
 import Container from '@/components/layout/Container'
 
 const collabStats = [
-  { value: '2', label: 'Events completed' },
-  { value: '48', label: 'Participants' },
-  { value: '5', label: 'Days per event' },
-  { value: '100%', label: 'Would return' },
+  {
+    value: '01',
+    label: 'Inaugural edition',
+    description: 'The first Move&Mind x Musaafir coastal chapter.',
+  },
+  {
+    value: 'HYD-GOA',
+    label: 'Boarding route',
+    description: 'A city-to-coast journey starting ex-Hyderabad.',
+  },
+  {
+    value: '2D/1N',
+    label: 'Weekend format',
+    description: 'Runs, recovery, stories, and sea air.',
+  },
+  {
+    value: 'FIRST',
+    label: 'Founding batch',
+    description: 'A small circle shaping what this becomes.',
+  },
 ]
 
 export default function MoveAndMindPage() {
@@ -26,11 +41,11 @@ export default function MoveAndMindPage() {
 
   return (
     <>
+      <InauguralNav />
       <CollabHero onRegister={() => setModalOpen(true)} />
       <StatBand stats={collabStats} dark />
       <CollabStory />
       <DayFormat />
-      <ExpectationsGrid />
       <PricingCards onRegister={() => setModalOpen(true)} />
 
       {/* Testimonials */}
@@ -54,9 +69,9 @@ export default function MoveAndMindPage() {
         heading="Ready to run, travel, and come alive?"
         body="Next event is filling fast. Register your interest today and we'll send you the full itinerary."
         primaryLabel="Register now"
-        primaryHref="#"
+        primaryOnClick={() => setModalOpen(true)}
         secondaryLabel="Ask a question"
-        secondaryHref="/contact"
+        secondaryHref="mailto:support.musaafir@gmail.com"
         dark
       />
 

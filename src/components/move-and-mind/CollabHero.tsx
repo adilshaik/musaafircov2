@@ -1,14 +1,14 @@
 'use client'
 
-import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
+import HeroScene from '@/components/move-and-mind/HeroScene'
 
 interface CollabHeroProps {
   onRegister: () => void
 }
 
-const tags = ['5 Days', 'Trail Runs', 'Yoga & Breathwork', 'Bonfires', 'Max 8 per batch']
+const tags = ['Hyderabad', 'Sunrise Beach Runs', 'Coastal Stay', 'Bonfire Nights', 'June 22–23']
 
 export default function CollabHero({ onRegister }: CollabHeroProps) {
   const reduce = useReducedMotion()
@@ -17,19 +17,14 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-forest">
-      {/* Slow-zoom background */}
+      {/* Interactive scene: bus from Hyderabad → Goa, with runners blended into the SVG */}
       <div className="absolute inset-0 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&q=80&w=2000"
-          alt="Trail running in the Himalayas — MusaafirCo × MoveAndMind"
-          fill
-          priority
-          className="object-cover object-center opacity-40 animate-hero-zoom"
-          sizes="100vw"
-        />
+        <HeroScene />
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-b from-forest/40 via-forest/65 to-forest/92" />
+      {/* Keep copy legible on the left while the scene (sun, bus, runners) breathes on the right/bottom */}
+      <div className="absolute inset-0 bg-linear-to-r from-forest via-forest/60 to-forest/10" />
+      <div className="absolute inset-0 bg-linear-to-b from-forest/25 via-transparent to-forest/55" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-32 w-full">
         <div className="max-w-3xl">
@@ -42,7 +37,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
           >
             <span className="block w-8 h-px bg-sunset/60 shrink-0" />
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-sunset">
-              MusaafirCo × MoveAndMind
+              Hyderabad → Goa · June 2026
             </span>
             <span className="block w-8 h-px bg-sunset/60 shrink-0" />
           </motion.div>
@@ -51,24 +46,32 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
             initial={initial}
             animate={animate}
             transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' as const }}
-            className="font-display font-bold text-white leading-tight mb-6"
+            className="font-display font-bold text-white leading-[0.95] mb-6"
             style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
           >
-            Move Your Body.{' '}
-            <em className="text-sunset italic">Free Your Mind.</em>{' '}
-            <br className="hidden md:block" />
-            Explore India.
+            Run.<br />
+            Travel.<br />
+            <em className="text-sunset italic">Come Alive.</em>
           </motion.h1>
 
           <motion.p
             initial={initial}
             animate={animate}
-            transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' as const }}
-            className="text-white/75 text-lg leading-relaxed max-w-2xl mb-8"
+            transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' as const }}
+            className="font-display italic text-white/85 text-xl md:text-2xl mb-5"
           >
-            We brought together MusaafirCo&rsquo;s travel expertise and MoveAndMind&rsquo;s
-            movement &amp; mindfulness community to create something new: outdoor
-            experiences that are as good for your body as they are for your soul.
+            Safar • Log • Kahaniya — one stride at a time.
+          </motion.p>
+
+          <motion.p
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.7, delay: 0.45, ease: 'easeOut' as const }}
+            className="text-white/70 text-lg leading-relaxed max-w-2xl mb-8"
+          >
+            A coastal run-club experience for the ones who collect miles, memories,
+            and midnight stories. From city streets to shoreline sunrises — boarding
+            Hyderabad for the inaugural Move&amp;Mind × Musaafir journey.
           </motion.p>
 
           {/* Feature tags */}

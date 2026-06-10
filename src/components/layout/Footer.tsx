@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Share2, Mail, MessageCircle } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import Container from './Container'
 
 const links = {
@@ -14,6 +14,26 @@ const links = {
     { href: '/move-and-mind', label: 'Move & Mind' },
     { href: '/contact', label: 'Contact' },
   ],
+}
+
+function InstagramMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="4" y="4" width="16" height="16" rx="5" />
+      <circle cx="12" cy="12" r="3.5" />
+      <circle cx="16.5" cy="7.5" r="0.75" fill="currentColor" stroke="none" />
+    </svg>
+  )
 }
 
 export default function Footer() {
@@ -32,23 +52,15 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/musaafirco._"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="text-sand/50 hover:text-sunset transition-colors"
               >
-                <Share2 size={20} />
+                <InstagramMark />
               </a>
-              <a
-                href="https://wa.me/919876543210"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="text-sand/50 hover:text-sunset transition-colors"
-              >
-                <MessageCircle size={20} />
-              </a>
+
               <a
                 href="mailto:hello@musaafirco.in"
                 aria-label="Email"

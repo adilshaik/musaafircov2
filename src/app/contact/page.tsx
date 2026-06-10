@@ -1,10 +1,11 @@
 'use client'
 
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
-import { Mail, MessageCircle, Share2 } from 'lucide-react'
+import { Mail, MessageCircle } from 'lucide-react'
 import Container from '@/components/layout/Container'
 import Input from '@/components/ui/Input'
 import Textarea from '@/components/ui/Textarea'
@@ -24,6 +25,27 @@ const schema = z.object({
 })
 
 type FormData = z.infer<typeof schema>
+
+function InstagramMark({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="4" y="4" width="16" height="16" rx="5" />
+      <circle cx="12" cy="12" r="3.5" />
+      <circle cx="16.5" cy="7.5" r="0.75" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -74,9 +96,9 @@ export default function ContactPage() {
                     <p className="text-stone max-w-sm mx-auto">
                       We&rsquo;ll get back to you within 24 hours. In the meantime,
                       browse our{' '}
-                      <a href="/trips" className="text-sunset font-semibold hover:underline">
+                      <Link href="/trips" className="text-sunset font-semibold hover:underline">
                         upcoming trips
-                      </a>
+                      </Link>
                       .
                     </p>
                   </div>
@@ -185,17 +207,17 @@ export default function ContactPage() {
                     </a>
 
                     <a
-                      href="https://instagram.com"
+                      href="https://www.instagram.com/musaafirco._"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-4 p-4 bg-white rounded-2xl hover:shadow-sm transition-shadow"
                     >
                       <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
-                        <Share2 size={20} className="text-purple-600" />
+                        <InstagramMark className="text-purple-600" />
                       </div>
                       <div>
                         <p className="font-semibold text-forest text-sm">Instagram</p>
-                        <p className="text-stone text-xs">@musaafirco</p>
+                        <p className="text-stone text-xs">@musaafirco._</p>
                       </div>
                     </a>
                   </div>

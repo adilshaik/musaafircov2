@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import Container from '@/components/layout/Container'
 import Button from '@/components/ui/Button'
 import RevealOnScroll from '@/components/shared/RevealOnScroll'
@@ -7,47 +7,33 @@ interface PricingCardsProps {
   onRegister: () => void
 }
 
+const inclusions = [
+  'Bus transportation — Hyderabad → Goa/Gokarna → Hyderabad (return)',
+  'Comfortable beach stay accommodation (shared/couple room)',
+  '3 Meals Per Day — local flavors, fresh seafood, and all the fuel you need',
+  '1 community dinner — the table everyone talks about',
+  'Coffee & snacks on the day of the run',
+  'Bonfire night with music and stories',
+  'Documentary-style photography & reels',
+]
+
 const plans = [
   {
-    name: 'Solo Explorer',
-    price: '₹14,900',
-    perPerson: true,
+    name: 'Solo Package',
+    price: '₹5,999',
+    note: 'Per person · All inclusive',
     highlight: false,
-    description: 'Everything you need for the full experience. Solo slot in a shared group.',
-    inclusions: [
-      '5 nights accommodation (twin sharing)',
-      'All meals (Day 1 dinner → Day 6 breakfast)',
-      'Daily trail run / hike led by guide',
-      '3× yoga & breathwork sessions',
-      'Bonfire nights with community',
-      'Professional photography (digital album)',
-      'Welcome & farewell dinners',
-      'All transport within itinerary',
-    ],
-    exclusions: [
-      'Travel to/from base city',
-      'Personal gear',
-      'Travel insurance (mandatory)',
-    ],
+    description: 'Just you, the sea, and the miles.',
+    inclusions,
   },
   {
     name: 'Duo Package',
-    price: '₹12,900',
-    perPerson: true,
+    price: '₹10,999',
+    note: 'Per couple · All inclusive',
     highlight: true,
     badge: 'Best value',
-    description: 'Same full experience, discounted when two of you sign up together.',
-    inclusions: [
-      'Everything in Solo Explorer',
-      '₹2,000 discount per person vs Solo',
-      'Private room option (subject to availability)',
-      'Priority batch selection',
-    ],
-    exclusions: [
-      'Travel to/from base city',
-      'Personal gear',
-      'Travel insurance (mandatory)',
-    ],
+    description: 'Run together, remember forever.',
+    inclusions,
   },
 ]
 
@@ -89,11 +75,13 @@ export default function PricingCards({ onRegister }: PricingCardsProps) {
 
                 <div className="mb-6">
                   <span className="font-accent text-5xl">{plan.price}</span>
-                  {plan.perPerson && (
-                    <span className={`text-sm ml-1 ${plan.highlight ? 'text-white/70' : 'text-sand/50'}`}>
-                      /person
-                    </span>
-                  )}
+                  <span
+                    className={`block text-xs uppercase tracking-[0.15em] mt-2 ${
+                      plan.highlight ? 'text-white/70' : 'text-sand/50'
+                    }`}
+                  >
+                    {plan.note}
+                  </span>
                 </div>
 
                 <Button
@@ -103,11 +91,12 @@ export default function PricingCards({ onRegister }: PricingCardsProps) {
                   onClick={onRegister}
                   className={
                     plan.highlight
-                      ? 'bg-white text-sunset hover:bg-white/90'
-                      : 'border-sunset text-sunset hover:bg-sunset hover:text-white'
+                      ? 'group bg-white text-forest shadow-lg shadow-forest/20 ring-1 ring-white/40 hover:-translate-y-0.5 hover:bg-sand hover:text-forest hover:shadow-xl hover:shadow-forest/25'
+                      : 'group border-sunset/70 bg-sunset/10 text-sunset shadow-sm shadow-sunset/10 hover:-translate-y-0.5 hover:border-sunset hover:bg-sunset hover:text-white hover:shadow-xl hover:shadow-sunset/25'
                   }
                 >
-                  Register interest
+                  <span>Register interest</span>
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
 
                 <ul className="mt-6 space-y-3">

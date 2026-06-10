@@ -1,15 +1,51 @@
 import Link from 'next/link'
-import Button from '@/components/ui/Button'
+import type { ReactNode } from 'react'
+import { ArrowRight, Mail, MessageCircle } from 'lucide-react'
 import Container from '@/components/layout/Container'
+import { cn } from '@/lib/utils'
 
 interface CTABandProps {
   heading: string
   body: string
   primaryLabel: string
-  primaryHref: string
+  primaryHref?: string
+  primaryOnClick?: () => void
   secondaryLabel?: string
   secondaryHref?: string
   dark?: boolean
+}
+
+function isExternalHref(href: string) {
+  return /^(https?:|mailto:|tel:)/.test(href)
+}
+
+function CtaLink({
+  href,
+  className,
+  children,
+}: {
+  href: string
+  className: string
+  children: ReactNode
+}) {
+  if (isExternalHref(href)) {
+    return (
+      <a
+        href={href}
+        target={href.startsWith('http') ? '_blank' : undefined}
+        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        className={className}
+      >
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  )
 }
 
 export default function CTABand({
@@ -17,6 +53,7 @@ export default function CTABand({
   body,
   primaryLabel,
   primaryHref,
+  primaryOnClick,
   secondaryLabel,
   secondaryHref,
   dark = true,
@@ -35,17 +72,48 @@ export default function CTABand({
           {body}
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Button variant="primary" size="lg">
-            <Link href={primaryHref}>{primaryLabel}</Link>
-          </Button>
-          {secondaryLabel && secondaryHref && (
-            <Button
-              variant={dark ? 'outline' : 'outline'}
-              size="lg"
-              className={dark ? 'border-sand text-sand hover:bg-sand hover:text-forest' : ''}
+          {primaryOnClick ? (
+            <button
+              onClick={primaryOnClick}
+              className={cn(
+                'group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunset focus-visible:ring-offset-2',
+                'bg-sunset text-white shadow-lg shadow-sunset/20 hover:-translate-y-0.5 hover:bg-sunset-dark hover:shadow-xl hover:shadow-sunset/30',
+                dark ? 'focus-visible:ring-offset-forest' : 'focus-visible:ring-offset-sand-dark'
+              )}
             >
-              <Link href={secondaryHref}>{secondaryLabel}</Link>
-            </Button>
+              {primaryLabel}
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          ) : primaryHref ? (
+            <CtaLink
+              href={primaryHref}
+              className={cn(
+                'group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunset focus-visible:ring-offset-2',
+                'bg-sunset text-white shadow-lg shadow-sunset/20 hover:-translate-y-0.5 hover:bg-sunset-dark hover:shadow-xl hover:shadow-sunset/30',
+                dark ? 'focus-visible:ring-offset-forest' : 'focus-visible:ring-offset-sand-dark'
+              )}
+            >
+              {primaryLabel}
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </CtaLink>
+          ) : null}
+          {secondaryLabel && secondaryHref && (
+            <CtaLink
+              href={secondaryHref}
+              className={cn(
+                'group inline-flex items-center justify-center gap-2 rounded-full border-2 px-8 py-4 text-base font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sunset focus-visible:ring-offset-2',
+                dark
+                  ? 'border-sand/60 bg-white/5 text-sand hover:-translate-y-0.5 hover:border-sand hover:bg-sand hover:text-forest hover:shadow-xl hover:shadow-black/20 focus-visible:ring-offset-forest'
+                  : 'border-forest/30 bg-white/40 text-forest hover:-translate-y-0.5 hover:border-forest hover:bg-forest hover:text-sand hover:shadow-lg hover:shadow-forest/10 focus-visible:ring-offset-sand-dark'
+              )}
+            >
+              {secondaryHref.startsWith('mailto:') ? (
+                <Mail size={18} className="transition-transform duration-300 group-hover:-rotate-6" />
+              ) : (
+                <MessageCircle size={18} className="transition-transform duration-300 group-hover:-rotate-6" />
+              )}
+              {secondaryLabel}
+            </CtaLink>
           )}
         </div>
       </Container>
