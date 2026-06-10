@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musaafir Co. | Safar. Log. Kahaniya.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --forest: #1A2421;
+            --forest-light: #243330;
+            --orange: #D97706;
+            --orange-dark: #B45309;
+            --orange-glow: rgba(217, 119, 6, 0.25);
+            --sand: #FDFBF7;
+            --sand-dark: #F5F0E8;
+            --text-muted: #6B7280;
+            --white: #FFFFFF;
+            --card-border: rgba(26, 36, 33, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--sand);
+            color: var(--forest);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--sand); }
+        ::-webkit-scrollbar-thumb { background: var(--forest); border-radius: 10px; }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 100%);
+            transition: all 0.5s ease;
+        }
+        nav.scrolled {
+            background: rgba(20, 30, 27, 0.96);
+            backdrop-filter: blur(16px);
+            padding: 1rem 4rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+        .nav-logo span { color: var(--orange); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--orange); }
+        .nav-cta {
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 0.65rem 1.75rem;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover { background: var(--white); color: var(--orange); transform: translateY(-1px); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: var(--forest);
+        }
+        .hero-bg img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.12); }
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(26,36,33,0.2) 0%, rgba(26,36,33,0.5) 70%, rgba(26,36,33,0.85) 100%);
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1.5rem;
+            max-width: 900px;
+            animation: fadeUp 1s ease 0.3s both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-eyebrow {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: '';
+            display: block; width: 40px; height: 1px; background: var(--orange); opacity: 0.6;
+        }
+        .hero-title {
+            font-size: clamp(3.5rem, 9vw, 7.5rem);
+            font-style: italic;
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .hero-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            font-weight: 300;
+            opacity: 0.85;
+            letter-spacing: 0.05em;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+        /* Search Bar */
+        .search-bar {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(217,119,6,0.15) inset;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) { .search-bar { flex-direction: row; } }
+        .search-field {
+            flex: 1;
+            padding: 1.25rem 1.75rem;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        .search-field:last-of-type { border-right: none; }
+        .search-label {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.35rem;
+        }
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.45); }
+        .search-input option { background: var(--forest); color: var(--white); }
+        .search-btn {
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            min-width: 150px;
+            margin: 0.35rem;
+            border-radius: 12px;
+        }
+        .search-btn:hover { background: var(--orange-dark); }
+        /* Hero scroll indicator */
+        .scroll-hint {
+            position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+            z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            color: rgba(255,255,255,0.5); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+            animation: bounce 2.5s ease-in-out infinite;
+        }
+        .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5)); }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ─── SECTION LABEL ─── */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--orange);
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .section-label::after {
+            content: '';
+            display: block; width: 30px; height: 1px; background: var(--orange); opacity: 0.5;
+        }
+
+        /* ─── SAFAR SECTION ─── */
+        #safar { padding: 7rem 4rem; max-width: 1300px; margin: 0 auto; }
+        .safar-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+        @media(min-width: 768px) {
+            .safar-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+        }
+        .safar-title { font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.15; }
+        .safar-subtitle { color: var(--text-muted); font-size: 0.85rem; max-width: 260px; line-height: 1.7; }
+        .view-all-btn {
+            background: none; border: 1.5px solid var(--forest);
+            padding: 0.65rem 1.5rem; border-radius: 50px;
+            font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em;
+            text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+            color: var(--forest); white-space: nowrap; align-self: flex-start;
+        }
+        .view-all-btn:hover { background: var(--forest); color: var(--white); }
+
+        /* Trip Grid */
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Trip Card */
+        .trip-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+            cursor: pointer;
+        }
+        .trip-card:hover { box-shadow: 0 20px 60px rgba(26,36,33,0.15); transform: translateY(-4px); }
+        .card-img-wrap { position: relative; height: 280px; overflow: hidden; }
+        .card-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .trip-card:hover .card-img-wrap img { transform: scale(1.08); }
+        .card-badge {
+            position: absolute; top: 1rem; left: 1rem;
+            background: rgba(255,255,255,0.95);
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--forest);
+            display: flex; align-items: center; gap: 0.4rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+        .badge-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--orange);
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+        .card-country-tag {
+            position: absolute; bottom: 1rem; right: 1rem;
+            background: var(--forest);
+            color: var(--white);
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            opacity: 0.9;
+        }
+        .card-body { padding: 1.75rem 2rem 2rem; }
+        .card-meta {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .card-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--orange); }
+        .card-title { font-size: 1.6rem; margin-bottom: 0.5rem; line-height: 1.2; }
+        .card-route {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+        .card-footer {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--card-border);
+        }
+        .card-price { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em; }
+        .card-price span { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; margin-left: 0.2rem; }
+        .card-btn {
+            background: none;
+            border: 1.5px solid var(--forest);
+            color: var(--forest);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .trip-card:hover .card-btn { background: var(--forest); color: var(--white); }
+
+        /* ─── STATS BAND ─── */
+        .stats-band {
+            background: var(--forest);
+            padding: 4rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .stats-band::before {
+            content: '';
+            position: absolute; top: -50%; right: -10%;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(217,119,6,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .stats-inner {
+            max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+        }
+        @media(min-width: 768px) { .stats-inner { grid-template-columns: repeat(4, 1fr); } }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-number span { color: var(--orange); }
+        .stat-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ─── LOG SECTION ─── */
+        #log {
+            background: var(--forest);
+            padding: 7rem 4rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        #log::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 30rem;
+            color: rgba(255,255,255,0.02);
+            position: absolute; top: -5rem; left: -2rem;
+            line-height: 1;
+            pointer-events: none;
+        }
+        .log-inner {
+            max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr;
+            gap: 5rem; align-items: center;
+        }
+        @media(min-width: 1024px) { .log-inner { grid-template-columns: 1fr 1fr; } }
+        .log-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .log-title em { color: var(--orange); font-style: normal; }
+        .log-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+            max-width: 420px;
+        }
+        /* Form */
+        .log-form { display: flex; flex-direction: column; gap: 1rem; }
+        .form-row { display: grid; gap: 1rem; }
+        @media(min-width: 600px) { .form-row { grid-template-columns: 1fr 1fr; } }
+        .form-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 1.1rem 1.5rem;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+            width: 100%;
+        }
+        .form-input::placeholder { color: rgba(255,255,255,0.3); }
+        .form-input:focus { border-color: var(--orange); background: rgba(217,119,6,0.06); }
+        .form-textarea {
+            resize: vertical; min-height: 100px;
+        }
+        .submit-btn {
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            padding: 1.1rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .submit-btn:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 24px var(--orange-glow); }
+        .submit-btn:active { transform: translateY(0); }
+        .success-msg {
+            display: none;
+            background: rgba(217,119,6,0.12);
+            border: 1px solid rgba(217,119,6,0.3);
+            border-radius: 14px;
+            padding: 1rem 1.5rem;
+            color: var(--orange);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* Right mosaic */
+        .log-mosaic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1rem;
+        }
+        .mosaic-img {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+        }
+        .mosaic-img img {
+            width: 100%; height: 220px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(80%);
+            transition: filter 0.7s ease, transform 0.7s ease;
+        }
+        .mosaic-img:hover img { filter: grayscale(0%); transform: scale(1.03); }
+        .mosaic-img.tall img { height: 320px; }
+        .mosaic-quote {
+            background: var(--orange);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .mosaic-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--white);
+        }
+        .mosaic-stat {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex; flex-direction: column; justify-content: flex-end;
+        }
+        .mosaic-stat h4 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .mosaic-stat p { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.25em; color: rgba(255,255,255,0.35); }
+
+        /* ─── KAHANIYA (Testimonials) ─── */
+        #kahaniya { padding: 7rem 4rem; max-width: 1300px; margin: 0 auto; }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+        .testimonial-card:hover { box-shadow: 0 10px 40px rgba(26,36,33,0.1); }
+        .testimonial-card.featured {
+            background: var(--forest);
+            color: var(--white);
+            grid-row: span 1;
+        }
+        .t-stars { color: var(--orange); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .t-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .t-author { display: flex; align-items: center; gap: 0.75rem; }
+        .t-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--orange-glow);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.8rem; color: var(--orange);
+            flex-shrink: 0;
+        }
+        .featured .t-avatar { background: rgba(217,119,6,0.2); }
+        .t-name { font-size: 0.8rem; font-weight: 600; }
+        .t-trip { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .featured .t-trip { color: rgba(255,255,255,0.45); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--forest);
+            color: rgba(255,255,255,0.35);
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            letter-spacing: 0.1em;
+        }
+        .footer-logo span { color: var(--orange); }
+        .footer-links {
+            display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.4); text-decoration: none;
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--orange); }
+        .footer-copy { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+
+        /* ─── MOBILE ─── */
+        @media(max-width: 767px) {
+            nav { padding: 1.25rem 1.5rem; }
+            nav.scrolled { padding: 0.9rem 1.5rem; }
+            .nav-links { display: none; }
+            #safar, #kahaniya, #log { padding: 5rem 1.5rem; }
+            .stats-band { padding: 3rem 1.5rem; }
+            footer { padding: 2.5rem 1.5rem; }
+            .search-field { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+
+        /* ─── REVEAL ANIMATION ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <div class="nav-logo">Musaafir<span>.</span></div>
+        <div class="nav-links">
+            <a href="#safar">Safar</a>
+            <a href="#log">Log</a>
+            <a href="#kahaniya">Kahaniya</a>
+        </div>
+        <button class="nav-cta">Join a Batch</button>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=2000" alt="Vietnam Landscape">
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">Small Batches. Big Stories.</div>
+            <h1 class="hero-title">Safar. Log.<br>Kahaniya.</h1>
+            <p class="hero-subtitle">Experience the world with 8 strangers<br>who won't stay strangers for long.</p>
+
+            <div class="search-bar">
+                <div class="search-field">
+                    <label class="search-label">Destination</label>
+                    <input type="text" placeholder="Where to?" class="search-input">
+                </div>
+                <div class="search-field">
+                    <label class="search-label">Batch Month</label>
+                    <select class="search-input">
+                        <option value="">Any Month</option>
+                        <option>October 2026</option>
+                        <option>November 2026</option>
+                        <option>December 2026</option>
+                        <option>January 2027</option>
+                        <option>February 2027</option>
+                    </select>
+                </div>
+                <button class="search-btn">Find My Batch →</button>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <div class="scroll-arrow"></div>
+            Scroll
+        </div>
+    </section>
+
+    <!-- ── UPCOMING SAFARS ── -->
+    <section id="safar">
+        <div class="safar-header reveal">
+            <div>
+                <div class="section-label">Curated Journeys</div>
+                <h2 class="safar-title">Upcoming<br>Safars</h2>
+            </div>
+            <p class="safar-subtitle">Small-group journeys for the modern wandering soul. Max 8 per batch.</p>
+            <button class="view-all-btn">View All Safars</button>
+        </div>
+
+        <div class="trips-grid">
+            <!-- Card 1 -->
+            <div class="trip-card reveal reveal-delay-1">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1504457047772-27faf1c00561?auto=format&fit=crop&q=80&w=800" alt="Vietnam">
+                    <div class="card-badge">
+                        <div class="badge-dot"></div> 5 Spots Left
+                    </div>
+                    <div class="card-country-tag">Vietnam</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">9 Days <span class="card-meta-dot"></span> Dec 2026</div>
+                    <h3 class="card-title">The Vietnam Loop</h3>
+                    <p class="card-route">HCM City → Hội An → Đà Nẵng → Hanoi</p>
+                    <div class="card-footer">
+                        <div class="card-price">₹85,000 <span>/ person</span></div>
+                        <button class="card-btn">Itinerary →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="trip-card reveal reveal-delay-2">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&q=80&w=800" alt="Ladakh">
+                    <div class="card-badge">
+                        <div class="badge-dot"></div> 3 Spots Left
+                    </div>
+                    <div class="card-country-tag">India</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">12 Days <span class="card-meta-dot"></span> Sep 2026</div>
+                    <h3 class="card-title">Ladakh Overland</h3>
+                    <p class="card-route">Manali → Sarchu → Leh → Nubra → Pangong</p>
+                    <div class="card-footer">
+                        <div class="card-price">₹65,000 <span>/ person</span></div>
+                        <button class="card-btn">Itinerary →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="trip-card reveal reveal-delay-3">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800" alt="Morocco">
+                    <div class="card-badge">
+                        <div class="badge-dot"></div> 8 Spots Left
+                    </div>
+                    <div class="card-country-tag">Morocco</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">10 Days <span class="card-meta-dot"></span> Jan 2027</div>
+                    <h3 class="card-title">Marrakech to Sahara</h3>
+                    <p class="card-route">Marrakech → Atlas Mtns → Merzouga → Fes</p>
+                    <div class="card-footer">
+                        <div class="card-price">₹1,10,000 <span>/ person</span></div>
+                        <button class="card-btn">Itinerary →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── STATS BAND ── -->
+    <div class="stats-band">
+        <div class="stats-inner">
+            <div class="stat-item reveal">
+                <div class="stat-number">12<span>k+</span></div>
+                <div class="stat-label">Kms Traveled</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-1">
+                <div class="stat-number">4<span>00+</span></div>
+                <div class="stat-label">Musaafirs</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+                <div class="stat-number">28</div>
+                <div class="stat-label">Safars Completed</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Countries Explored</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── THE LOG ── -->
+    <section id="log">
+        <div class="log-inner">
+            <div>
+                <div class="section-label" style="color: rgba(217,119,6,0.8);">The Log</div>
+                <h2 class="log-title">Can't find your<br><em>perfect safar?</em></h2>
+                <p class="log-desc">We build trips based on collective energy. Tell us where you want to go — if 8 others agree, we'll build the entire batch around your dream destination.</p>
+
+                <div class="log-form">
+                    <div class="form-row">
+                        <input type="text" placeholder="Your Name" class="form-input">
+                        <input type="email" placeholder="your@email.com" class="form-input">
+                    </div>
+                    <input type="text" placeholder="Where do you want to go?" class="form-input">
+                    <input type="text" placeholder="Best time to travel (e.g. March 2027)" class="form-input">
+                    <textarea placeholder="Anything specific you're dreaming of? (optional)" class="form-input form-textarea"></textarea>
+                    <button class="submit-btn" onclick="submitForm()">
+                        <span>Request a Destination</span>
+                        <span>→</span>
+                    </button>
+                    <div class="success-msg" id="successMsg">
+                        ✦ We've noted your request, Musaafir! We'll reach out when a batch comes together.
+                    </div>
+                </div>
+            </div>
+
+            <div class="log-mosaic">
+                <div class="mosaic-img tall">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=500" alt="Travel">
+                </div>
+                <div style="display:flex;flex-direction:column;gap:1rem;">
+                    <div class="mosaic-quote">
+                        <p>"Strangers became family in 9 days."</p>
+                    </div>
+                    <div class="mosaic-img">
+                        <img src="https://images.unsplash.com/photo-1533228891704-7fce9a28623b?auto=format&fit=crop&q=80&w=500" alt="Community">
+                    </div>
+                    <div class="mosaic-stat">
+                        <h4>98%</h4>
+                        <p>Would travel again with us</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── KAHANIYA (Testimonials) ── -->
+    <section id="kahaniya">
+        <div class="reveal">
+            <div class="section-label">Kahaniya</div>
+            <h2 style="font-size: clamp(2.2rem, 5vw, 3.5rem);">Stories from the<br>road.</h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card featured reveal">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-text">"Nine days in Vietnam and I came back a different person. The group, the places, the silences in between — this is what travel should feel like."</p>
+                <div class="t-author">
+                    <div class="t-avatar">AR</div>
+                    <div>
+                        <div class="t-name" style="color:white;">Ananya R.</div>
+                        <div class="t-trip">The Vietnam Loop • Dec 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-1">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-text">"Ladakh broke me open. The logistics were flawless, but it was the people in my batch who made it unforgettable."</p>
+                <div class="t-author">
+                    <div class="t-avatar">KS</div>
+                    <div>
+                        <div class="t-name">Karan S.</div>
+                        <div class="t-trip">Ladakh Overland • Aug 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-2">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-text">"I was nervous traveling solo but Musaafir changed that. Within the first day it felt like I'd known everyone for years."</p>
+                <div class="t-author">
+                    <div class="t-avatar">PM</div>
+                    <div>
+                        <div class="t-name">Priya M.</div>
+                        <div class="t-trip">Morocco Bound • Nov 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-logo">Musaafir<span>.</span></div>
+        <div class="footer-links">
+            <a href="#safar">Safar</a>
+            <a href="#log">Log</a>
+            <a href="#kahaniya">Kahaniya</a>
+            <a href="#">About</a>
+            <a href="#">Instagram</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Musaafir Co. &bull; Safar. Log. Kahaniya.</div>
+    </footer>
+
+    <script>
+        // ── Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // ── Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => observer.observe(el));
+
+        // ── Form submit
+        function submitForm() {
+            const msg = document.getElementById('successMsg');
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 5000);
+        }
+
+        // ── Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
