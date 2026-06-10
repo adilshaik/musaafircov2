@@ -9,7 +9,7 @@ interface PricingCardsProps {
 
 const inclusions = [
   'Bus transportation — Hyderabad → Goa/Gokarna → Hyderabad (return)',
-  'Comfortable beach stay accommodation (shared/couple room)',
+  'Comfortable beach stay accommodation (shared rooms)',
   '3 Meals Per Day — local flavors, fresh seafood, and all the fuel you need',
   '1 community dinner — the table everyone talks about',
   'Coffee & snacks on the day of the run',

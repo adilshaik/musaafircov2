@@ -46,7 +46,7 @@ const plans = [
     amount: 10999,
     note: 'per couple',
     emoji: '👫',
-    features: ['2 runner slots', 'Private room', 'All meals included'],
+    features: ['2 runner slots', 'Shared accommodation', 'All meals included'],
   },
 ]
 
