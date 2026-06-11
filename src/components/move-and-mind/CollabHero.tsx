@@ -8,7 +8,7 @@ interface CollabHeroProps {
   onRegister: () => void
 }
 
-const tags = ['Hyderabad', 'Sunrise Beach Runs', 'Coastal Stay', 'Bonfire Nights', 'June 22–23']
+const tags = ['Hyderabad', 'Sunrise Beach Run', 'Coastal Stay', 'Bonfire Nights', 'June 21–22']
 
 export default function CollabHero({ onRegister }: CollabHeroProps) {
   const reduce = useReducedMotion()
