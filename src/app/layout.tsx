@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { inter, playfairDisplay, bebasNeue } from '@/fonts'
 import Footer from '@/components/layout/Footer'
+import Analytics from '@/components/ui/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-sand text-forest">
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
