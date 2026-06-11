@@ -189,10 +189,10 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                   <div className="flex flex-col items-center gap-1">
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${i < step
-                          ? 'bg-sunset text-white'
-                          : i === step
-                            ? 'bg-forest text-sand ring-4 ring-forest/15'
-                            : 'bg-stone/10 text-stone/40'
+                        ? 'bg-sunset text-white'
+                        : i === step
+                          ? 'bg-forest text-sand ring-4 ring-forest/15'
+                          : 'bg-stone/10 text-stone/40'
                         }`}
                     >
                       {i < step ? '✓' : i + 1}
@@ -240,8 +240,8 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                           key={plan.id}
                           onClick={() => setValue('plan', plan.id)}
                           className={`rounded-2xl border-2 p-4 text-left transition-all duration-200 cursor-pointer ${selectedPlan === plan.id
-                              ? 'border-sunset bg-sunset/5 shadow-md shadow-sunset/10'
-                              : 'border-stone/15 hover:border-stone/30'
+                            ? 'border-sunset bg-sunset/5 shadow-md shadow-sunset/10'
+                            : 'border-stone/15 hover:border-stone/30'
                             }`}
                         >
                           <span className="text-2xl">{plan.emoji}</span>
@@ -405,7 +405,7 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
 
                     {/* QR card */}
                     <div className="flex flex-col items-center">
-                      <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-stone/10 shadow-lg shadow-forest/10 bg-white">
+                      <div className="relative w-60 h-72 rounded-2xl overflow-hidden border-2 border-stone/10 shadow-lg shadow-forest/10 bg-white">
                         {/* Loading overlay */}
                         <AnimatePresence>
                           {!qrLoaded && (
@@ -426,10 +426,11 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                         </AnimatePresence>
 
                         <Image
-                          src="/gpay-qr.png"
+                          src="/gpay-qr.jpeg"
                           alt="Google Pay QR Code"
                           fill
-                          className="object-contain p-2"
+                          sizes="240px"
+                          className="object-cover"
                           onLoad={() => setTimeout(() => setQrLoaded(true), 800)}
                           priority
                         />
@@ -457,8 +458,8 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                         placeholder="e.g. 426781234567"
                         {...register('transactionId')}
                         className={`w-full rounded-xl border-2 px-4 py-3 text-sm text-forest font-mono placeholder:text-stone/30 outline-none transition-colors bg-sand-dark ${errors.transactionId
-                            ? 'border-red-400 focus:border-red-500'
-                            : 'border-stone/15 focus:border-sunset'
+                          ? 'border-red-400 focus:border-red-500'
+                          : 'border-stone/15 focus:border-sunset'
                           }`}
                       />
                       {errors.transactionId && (
