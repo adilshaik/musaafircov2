@@ -56,14 +56,14 @@ export default function PricingCards({ onRegister }: PricingCardsProps) {
           {plans.map((plan, i) => (
             <RevealOnScroll key={plan.name} delay={i * 0.15}>
               <div
-                className={`rounded-3xl p-8 relative overflow-hidden ${
+                className={`rounded-3xl p-5 sm:p-8 relative overflow-hidden ${
                   plan.highlight
                     ? 'bg-sunset text-white'
                     : 'bg-forest border border-white/10 text-sand'
                 }`}
               >
                 {plan.highlight && plan.badge && (
-                  <span className="absolute top-5 right-5 bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  <span className="absolute top-4 right-4 sm:top-5 sm:right-5 bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
                     {plan.badge}
                   </span>
                 )}
@@ -74,7 +74,7 @@ export default function PricingCards({ onRegister }: PricingCardsProps) {
                 </p>
 
                 <div className="mb-6">
-                  <span className="font-accent text-5xl">{plan.price}</span>
+                  <span className="font-accent text-4xl sm:text-5xl">{plan.price}</span>
                   <span
                     className={`block text-xs uppercase tracking-[0.15em] mt-2 ${
                       plan.highlight ? 'text-white/70' : 'text-sand/50'

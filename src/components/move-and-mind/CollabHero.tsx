@@ -26,7 +26,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
       <div className="absolute inset-0 bg-linear-to-r from-forest via-forest/60 to-forest/10" />
       <div className="absolute inset-0 bg-linear-to-b from-forest/25 via-transparent to-forest/55" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-32 w-full">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-20 sm:pt-28 sm:pb-32 w-full">
         <div className="max-w-3xl">
           {/* Eyebrow with decorative lines */}
           <motion.div
@@ -58,7 +58,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
             initial={initial}
             animate={animate}
             transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' as const }}
-            className="font-display italic text-white/85 text-xl md:text-2xl mb-5"
+            className="font-display italic text-white/85 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-5"
           >
             Safar • Log • Kahaniya — one stride at a time.
           </motion.p>
@@ -67,7 +67,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
             initial={initial}
             animate={animate}
             transition={{ duration: 0.7, delay: 0.45, ease: 'easeOut' as const }}
-            className="text-white/70 text-lg leading-relaxed max-w-2xl mb-8"
+            className="text-white/70 text-base sm:text-lg leading-relaxed max-w-2xl mb-6 sm:mb-8"
           >
             A coastal run-club experience for the ones who collect miles, memories,
             and midnight stories. From city streets to shoreline sunrises — boarding
@@ -84,7 +84,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-semibold text-white/65 bg-white/8 border border-white/15 rounded-full px-4 py-1.5 tracking-wide"
+                className="text-[10px] sm:text-xs font-semibold text-white/65 bg-white/8 border border-white/15 rounded-full px-3 py-1 sm:px-4 sm:py-1.5 tracking-wide"
               >
                 {tag}
               </span>
@@ -102,7 +102,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
             </Button>
             <a
               href="#events"
-              className="inline-flex items-center px-8 py-4 text-base font-semibold text-white/75 hover:text-white transition-colors gap-2"
+              className="inline-flex items-center px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-white/75 hover:text-white transition-colors gap-2"
             >
               See upcoming events
               <span className="text-sunset">↓</span>
@@ -112,7 +112,7 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 animate-bounce">
         <div className="w-px h-10 bg-linear-to-b from-transparent to-white/50" />
         <span className="text-white/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
       </div>

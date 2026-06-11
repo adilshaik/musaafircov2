@@ -7,7 +7,7 @@ export default function CollabStory() {
   return (
     <section className="bg-forest-light py-16 md:py-24 overflow-hidden" id="events">
       <Container>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
 
           {/* Left: story */}
           <RevealOnScroll>
@@ -44,7 +44,7 @@ export default function CollabStory() {
 
           {/* Right: photo mosaic */}
           <RevealOnScroll delay={0.2}>
-            <div className="grid grid-cols-2 gap-3 h-120">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 h-72 sm:h-96 lg:h-120">
               {/* Left col: tall image */}
               <div className="relative rounded-2xl overflow-hidden">
                 <Image

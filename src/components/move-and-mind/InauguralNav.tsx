@@ -35,7 +35,7 @@ export default function InauguralNav() {
           : 'bg-transparent border-b border-transparent'
       )}
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-3 text-center sm:py-4">
+      <div className="mx-auto flex max-w-7xl flex-col items-center px-3 py-2.5 text-center sm:px-4 sm:py-4">
         {/* Eyebrow with lines that draw outward */}
         <motion.div
           initial={up}
@@ -65,7 +65,7 @@ export default function InauguralNav() {
           initial={up}
           animate={show}
           transition={{ duration: 0.6, delay: 0.35, ease }}
-          className="font-accent text-2xl leading-none tracking-[0.08em] text-white sm:text-3xl"
+          className="font-accent text-xl leading-none tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.08em]"
         >
           MOVE&amp;MIND{' '}
           <motion.span

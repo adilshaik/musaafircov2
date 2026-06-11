@@ -62,16 +62,16 @@ export default function CTABand({
     <div className={dark ? 'bg-forest' : 'bg-sand-dark'}>
       <Container className="py-16 md:py-24 text-center">
         <h2
-          className={`font-display text-3xl md:text-4xl font-bold mb-4 ${dark ? 'text-sand' : 'text-forest'}`}
+          className={`font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 ${dark ? 'text-sand' : 'text-forest'}`}
         >
           {heading}
         </h2>
         <p
-          className={`text-base md:text-lg max-w-xl mx-auto mb-8 ${dark ? 'text-sand/70' : 'text-stone'}`}
+          className={`text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-6 sm:mb-8 ${dark ? 'text-sand/70' : 'text-stone'}`}
         >
           {body}
         </p>
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
           {primaryOnClick ? (
             <button
               onClick={primaryOnClick}

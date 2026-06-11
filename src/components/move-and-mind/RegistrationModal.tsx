@@ -183,12 +183,12 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
         ) : (
           <div className="pt-6 pb-2 px-1">
             {/* Step progress bar */}
-            <div className="flex items-center justify-between mb-8 px-1">
+            <div className="flex items-center justify-between mb-6 sm:mb-8 px-1">
               {stepLabels.map((label, i) => (
                 <div key={label} className="flex items-center">
                   <div className="flex flex-col items-center gap-1">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${i < step
+                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all duration-300 ${i < step
                         ? 'bg-sunset text-white'
                         : i === step
                           ? 'bg-forest text-sand ring-4 ring-forest/15'
@@ -205,7 +205,7 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                     </span>
                   </div>
                   {i < stepLabels.length - 1 && (
-                    <div className="w-8 md:w-14 h-px mx-2 mb-4 overflow-hidden bg-stone/10 rounded-full">
+                    <div className="w-5 sm:w-8 md:w-14 h-px mx-1 sm:mx-2 mb-4 overflow-hidden bg-stone/10 rounded-full">
                       <motion.div
                         className="h-full bg-sunset rounded-full"
                         initial={{ width: '0%' }}
@@ -239,14 +239,14 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                           type="button"
                           key={plan.id}
                           onClick={() => setValue('plan', plan.id)}
-                          className={`rounded-2xl border-2 p-4 text-left transition-all duration-200 cursor-pointer ${selectedPlan === plan.id
+                          className={`rounded-2xl border-2 p-3 sm:p-4 text-left transition-all duration-200 cursor-pointer ${selectedPlan === plan.id
                             ? 'border-sunset bg-sunset/5 shadow-md shadow-sunset/10'
                             : 'border-stone/15 hover:border-stone/30'
                             }`}
                         >
-                          <span className="text-2xl">{plan.emoji}</span>
-                          <p className="font-bold text-forest mt-2 text-base">{plan.label}</p>
-                          <p className="text-sunset font-extrabold text-xl mt-0.5">{plan.price}</p>
+                          <span className="text-xl sm:text-2xl">{plan.emoji}</span>
+                          <p className="font-bold text-forest mt-1.5 sm:mt-2 text-sm sm:text-base">{plan.label}</p>
+                          <p className="text-sunset font-extrabold text-lg sm:text-xl mt-0.5">{plan.price}</p>
                           <p className="text-xs text-stone mt-0.5 mb-2">{plan.note}</p>
                           <ul className="space-y-1">
                             {plan.features.map((f) => (
@@ -262,7 +262,7 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                     <button
                       type="button"
                       onClick={goToStep1}
-                      className="w-full rounded-full bg-forest text-sand py-3.5 text-sm font-semibold hover:bg-forest/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full rounded-full bg-forest text-sand py-3 sm:py-3.5 text-xs sm:text-sm font-semibold hover:bg-forest/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <Zap size={16} />
                       Continue with {selectedPlanData.label} — {selectedPlanData.price}
@@ -346,16 +346,16 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                           value: `${selectedPlanData.label} — ${selectedPlanData.price} ${selectedPlanData.note}`,
                         },
                       ].map(({ label, value }) => (
-                        <div key={label} className="flex justify-between px-4 py-3 text-sm">
-                          <span className="text-stone/60 font-medium">{label}</span>
-                          <span className="text-forest font-semibold text-right max-w-[55%] truncate">
+                        <div key={label} className="flex justify-between px-3 sm:px-4 py-2.5 sm:py-3 text-sm">
+                          <span className="text-stone/60 font-medium text-xs sm:text-sm">{label}</span>
+                          <span className="text-forest font-semibold text-right max-w-[55%] truncate text-xs sm:text-sm">
                             {value}
                           </span>
                         </div>
                       ))}
                     </div>
                     {/* Total due */}
-                    <div className="rounded-2xl bg-forest text-sand px-4 py-3 flex items-center justify-between">
+                     <div className="rounded-2xl bg-forest text-sand px-3 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between">
                       <span className="text-sm font-semibold text-sand/70">Total due</span>
                       <span className="text-sunset font-extrabold text-xl">
                         {selectedPlanData.price}
@@ -399,13 +399,13 @@ export default function RegistrationModal({ open, onClose }: RegistrationModalPr
                       <p className="text-xs font-semibold uppercase tracking-widest text-stone/50 mb-1">
                         Scan to pay
                       </p>
-                      <p className="text-forest font-extrabold text-2xl">{selectedPlanData.price}</p>
+                      <p className="text-forest font-extrabold text-xl sm:text-2xl">{selectedPlanData.price}</p>
                       <p className="text-stone/50 text-xs mt-0.5">{selectedPlanData.note} · full payment</p>
                     </div>
 
                     {/* QR card */}
                     <div className="flex flex-col items-center">
-                      <div className="relative w-60 h-72 rounded-2xl overflow-hidden border-2 border-stone/10 shadow-lg shadow-forest/10 bg-white">
+                      <div className="relative w-48 h-56 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-stone/10 shadow-lg shadow-forest/10 bg-white">
                         {/* Loading overlay */}
                         <AnimatePresence>
                           {!qrLoaded && (

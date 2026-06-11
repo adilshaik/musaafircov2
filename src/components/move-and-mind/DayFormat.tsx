@@ -68,7 +68,7 @@ export default function DayFormat() {
           {schedule.map((item, i) => (
             <RevealOnScroll key={item.time} delay={i * 0.08}>
               <div
-                className={`rounded-3xl p-6 h-full flex flex-col gap-4 ${
+                className={`rounded-3xl p-4 sm:p-6 h-full flex flex-col gap-3 sm:gap-4 ${
                   item.dark
                     ? 'bg-forest text-sand'
                     : 'bg-white shadow-sm border border-forest/6'
@@ -83,13 +83,13 @@ export default function DayFormat() {
                   >
                     <item.icon size={18} className="text-sunset" />
                   </div>
-                  <span className="font-accent text-2xl text-sunset tracking-wide">
+                  <span className="font-accent text-xl sm:text-2xl text-sunset tracking-wide">
                     {item.time}
                   </span>
                 </div>
 
                 <h3
-                  className={`font-display font-bold text-xl leading-snug ${
+                  className={`font-display font-bold text-lg sm:text-xl leading-snug ${
                     item.dark ? 'text-sand' : 'text-forest'
                   }`}
                 >
