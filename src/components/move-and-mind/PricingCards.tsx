@@ -8,13 +8,14 @@ interface PricingCardsProps {
 }
 
 const inclusions = [
-  'Bus transportation — Hyderabad → Goa/Gokarna → Hyderabad (return)',
-  'Comfortable beach stay accommodation (shared rooms)',
-  '3 Meals Per Day — local flavors, fresh seafood, and all the fuel you need',
-  '1 community dinner — the table everyone talks about',
-  'Coffee & snacks on the day of the run',
-  'Bonfire night with music and stories',
-  'Documentary-style photography & reels',
+'Bus transportation — Hyderabad → Goa→ Hyderabad return',
+'Comfortable stay with accommodation in shared rooms with goSTOPS',
+'3 meals on us — 1 breakfast, 1 lunch, and 1 dinner featuring local flavors and fresh seafood',
+'The included dinner will be a community dinner— the table everyone talks about',
+'All other meals will be at participants own expense',
+'Coffee & snacks on the day of the run',
+'Bonfire night with music and stories',
+'Documentary-style photography & reels',
 ]
 
 const plans = [

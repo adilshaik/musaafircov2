@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import HeroScene from '@/components/move-and-mind/HeroScene'
@@ -8,7 +9,7 @@ interface CollabHeroProps {
   onRegister: () => void
 }
 
-const tags = ['Hyderabad', 'Sunrise Beach Run', 'Coastal Stay', 'Bonfire Nights', 'June 20–21']
+const tags = ['Hyderabad', 'Sunrise Beach Run', 'Pool Party', 'Bonfire Nights', 'June 20–21']
 
 export default function CollabHero({ onRegister }: CollabHeroProps) {
   const reduce = useReducedMotion()
@@ -73,6 +74,31 @@ export default function CollabHero({ onRegister }: CollabHeroProps) {
             and midnight stories. From city streets to shoreline sunrises — boarding
             Hyderabad for the inaugural Move&amp;Mind × Musaafir journey.
           </motion.p>
+
+          <motion.div
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.7, delay: 0.48, ease: 'easeOut' as const }}
+            className="inline-flex items-center gap-3 sm:gap-4 bg-white/8 border border-white/15 rounded-lg px-4 py-3 sm:px-5 sm:py-4 mb-6 sm:mb-8 backdrop-blur-sm hover:bg-white/12 transition-colors w-fit"
+          >
+            <div className="flex-shrink-0">
+              <Image
+                src="/goSTOPS.webp"
+                alt="goSTOPS India"
+                width={48}
+                height={48}
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold text-white/60 uppercase tracking-wide">
+                Accommodation partner
+              </span>
+              <span className="text-sm sm:text-base font-semibold text-white">
+                goSTOPS India
+              </span>
+            </div>
+          </motion.div>
 
           {/* Feature tags */}
           <motion.div
